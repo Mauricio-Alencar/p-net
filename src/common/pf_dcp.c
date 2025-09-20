@@ -73,35 +73,29 @@
    See Profinet 2.4 Services, section 6.3.11.2.2 */
 #define PF_DCP_SAM_TIMEOUT 3000000 /* microseconds */
 
-CC_PACKED_BEGIN
-typedef struct CC_PACKED pf_ethhdr
+typedef struct pf_ethhdr
 {
    pnet_ethaddr_t dest;
    pnet_ethaddr_t src;
    uint16_t type; /* Note: network endianness */
-} pf_ethhdr_t;
-CC_PACKED_END
+} __attribute__((packed)) pf_ethhdr_t;
 
-CC_PACKED_BEGIN
-typedef struct CC_PACKED pf_dcp_header
+typedef struct pf_dcp_header
 {
    uint8_t service_id;
    uint8_t service_type;
    uint32_t xid;                   /* Note: network endianness */
    uint16_t response_delay_factor; /* Note: network endianness */
    uint16_t data_length;           /* Note: network endianness */
-} pf_dcp_header_t;
-CC_PACKED_END
+} __attribute__((packed)) pf_dcp_header_t;
 CC_STATIC_ASSERT (PF_DCP_HEADER_SIZE == sizeof (pf_dcp_header_t));
 
-CC_PACKED_BEGIN
-typedef struct CC_PACKED pf_dcp_block_hdr
+typedef struct pf_dcp_block_hdr
 {
    uint8_t option;
    uint8_t sub_option;
    uint16_t block_length; /* Note: network endianness */
-} pf_dcp_block_hdr_t;
-CC_PACKED_END
+} __attribute__((packed)) pf_dcp_block_hdr_t;
 CC_STATIC_ASSERT (PF_DCP_BLOCK_HDR_SIZE == sizeof (pf_dcp_block_hdr_t));
 
 /*

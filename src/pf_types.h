@@ -765,15 +765,13 @@ typedef enum pf_index_values
    PF_IDX_DEV_CONN_MON_TRIGGER = 0xfbff,
 } pf_index_values_t;
 
-CC_PACKED_BEGIN
-typedef struct CC_PACKED pf_block_header
+typedef struct pf_block_header
 {
    uint16_t block_type; /** pf_block_type_values_t */
    uint16_t block_length;
    uint8_t block_version_high;
    uint8_t block_version_low;
-} pf_block_header_t;
-CC_PACKED_END
+} __attribute__((packed)) pf_block_header_t;
 /* The following line guarantees that offsetof works as expected on received
  * data. */
 CC_STATIC_ASSERT (sizeof (pf_block_header_t) == (2 + 2 + 1 + 1));

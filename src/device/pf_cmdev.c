@@ -4261,7 +4261,11 @@ static int pf_cmdev_check_apdu (
             ret = -1;
          }
 #endif
+#if PNET_OPTION_IR
          else if ((p_ar->ir_info.valid == false) && (p_ar->rtc3_present == true))
+#else
+         else if (p_ar->rtc3_present == true)
+#endif
          {
             /* ToDo: Which error_code_2? */
             pf_set_error (
