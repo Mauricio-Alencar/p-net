@@ -37,6 +37,10 @@ extern "C" {
 #include "pnet_api.h"
 #include "pnal_sys.h"
 
+#ifndef BIT
+#define BIT(n) (1UL << (n))
+#endif
+
 // Declaração antecipada de tipos de buffer usados pela API PNAL
 typedef struct pnal_buf pnal_buf_t;
 
@@ -563,3 +567,4 @@ int pnal_set_ip_suite (
 #endif
 
 #endif /* PNAL_H */
+
